@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulář pro evidenci milenek/milenců</title>
+    <script>
+        function validateForm() {
+            var jmeno = document.getElementById("jmeno").value;
+            var prijmeni = document.getElementById("prijmeni").value;
+            var foto = document.getElementById("foto").value;
+            var narozeni = document.getElementById("narozeni").value;
+            var telefon = document.getElementById("telefon").value;
+            var vyska = document.getElementById("vyska").value;
+
+           
+            var dob = new Date(narozeni);
+            var currentDate = new Date();
+            var age = currentDate.getFullYear() - dob.getFullYear();
+
+            if (age < 18) {
+                alert("Osoba musí být starší než 18 let.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+<h2>Evidence milenek/milenců</h2>
+
+<form action="submit.php" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+   
+    <label for="jmeno">Jméno:</label>
+    <input type="text" id="jmeno" name="jmeno" required><br><br>
+
+    <label for="prijmeni">Příjmení:</label>
+    <input type="text" id="prijmeni" name="prijmeni" required><br><br>
+
+    
+    <label for="foto">Fotka:</label>
+    <input type="file" id="foto" name="foto" accept="image/*"><br><br>
+
+   
+    <label for="narozeni">Datum narození:</label>
+    <input type="date" id="narozeni" name="narozeni"><br><br>
+
+    
+    <label for="telefon">Telefonní číslo:</label>
+    <input type="tel" id="telefon" name="telefon" pattern="[0-9]{9,12}" placeholder="Např. 123456789" required><br><br>
+
+    
+    <label for="vyska">Výška (cm):</label>
+    <input type="number" id="vyska" name="vyska" value="140" min="140" required><br><br>
+
+    <label for="bydliste">Bydliště:</label>
+    <input type="text" id="bydliste" name="bydliste" required><br><br>
+
+    
+    <label for="zenata">byl/á ženatý/á:</label>
+    <select id="zenata" name="zenata">
+        <option value="ano">Ano</option>
+        <option value="ne">Ne</option>
+    </select><br><br>
+
+    
+    <input type="submit" value="Uložit">
+</form>
+
+</body>
+</html>
